@@ -1,45 +1,62 @@
 import React, { useState, useCallback } from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-
-const containerStyle = {
-  width: "400px",
-  height: "400px",
-};
-
-const center = {
-  lat: -1.2884,
-  lng: 36.8233,
-};
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 export default function Map() {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: process.env.REACT_APP_API_KEY,
-  });
+  const mapStyles = {
+    height: "100vh",
+    width: "100%",
+  };
 
-  const [map, setMap] = useState(null);
+  const defaultCenter = {
+    lat: 41.3851,
+    lng: 2.1734,
+  };
 
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map);
-  }, []);
+  const locations = [
+    {
+      name: "Location 1",
+      location: {
+        lat: 41.3954,
+        lng: 2.162,
+      },
+    },
+    {
+      name: "Location 2",
+      location: {
+        lat: 41.3917,
+        lng: 2.1649,
+      },
+    },
+    {
+      name: "Location 3",
+      location: {
+        lat: 41.3773,
+        lng: 2.1585,
+      },
+    },
+    {
+      name: "Location 4",
+      location: {
+        lat: 41.3797,
+        lng: 2.1682,
+      },
+    },
+    {
+      name: "Location 5",
+      location: {
+        lat: 41.4055,
+        lng: 2.1915,
+      },
+    },
+  ];
 
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
-  }, []);
-
-  return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      {} <></>
-    </GoogleMap>
-  ) : (
-    <></>
+  return (
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY}>
+      <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter}>
+        {locations.map((item) => {
+          return <Marker key={item.name} position={item.location} />;
+        })}
+      </GoogleMap>
+    </LoadScript>
   );
 }
