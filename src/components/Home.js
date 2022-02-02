@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div>
       <h1>This is the home screen!</h1>
-      <Map />
+      <div style={{ width: 1000 }}>
+        <Map />
+      </div>
     </div>
   );
 }
