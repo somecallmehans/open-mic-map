@@ -1,7 +1,18 @@
 import React, { useState, useCallback } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  InfoWindow,
+  LoadScript,
+  Marker,
+} from "@react-google-maps/api";
 
 export default function Map() {
+  const [selected, setSelected] = useState({});
+
+  const onSelect = (item) => {
+    setSelected(item);
+  };
+
   const mapStyles = {
     height: "80vh",
     width: "100%",
@@ -54,10 +65,25 @@ export default function Map() {
 
   return (
     <LoadScript googleMapsApiKey={process.env.REACT_APP_API_KEY}>
-      <GoogleMap mapContainerStyle={mapStyles} zoom={13} center={defaultCenter}>
+      <GoogleMap mapContainerStyle={mapStyles} zoom={10} center={defaultCenter}>
         {locations.map((item) => {
-          return <Marker key={item.name} position={item.location} />;
+          return (
+            <Marker
+              key={item.name}
+              position={item.location}
+              onClick={() => onSelect(item)}
+            />
+          );
         })}
+        {selected.location && (
+          <InfoWindow
+            position={selected.location}
+            clickable={true}
+            onCloseClick={() => setSelected({})}
+          >
+            <p>{selected.name}</p>
+          </InfoWindow>
+        )}
       </GoogleMap>
     </LoadScript>
   );
