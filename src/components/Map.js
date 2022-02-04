@@ -3,49 +3,51 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 export default function Map() {
   const mapStyles = {
-    height: "100vh",
+    height: "80vh",
     width: "100%",
   };
 
+  //Sotuh/West are denoted with negative numbers
+  //This is Pittsburgh
   const defaultCenter = {
-    lat: 41.3851,
-    lng: 2.1734,
+    lat: 40.3851,
+    lng: -79.9959,
   };
 
   const locations = [
     {
-      name: "Location 1",
+      name: "Andy Warhol Museum",
       location: {
-        lat: 41.3954,
-        lng: 2.162,
+        lat: 40.4484,
+        lng: -80.0025,
       },
     },
     {
-      name: "Location 2",
+      name: "Carnegie Science Center",
       location: {
-        lat: 41.3917,
-        lng: 2.1649,
+        lat: 40.4457,
+        lng: -80.0182,
       },
     },
     {
-      name: "Location 3",
+      name: "Thunderbird Cafe",
       location: {
-        lat: 41.3773,
-        lng: 2.1585,
+        lat: 40.4694154,
+        lng: -79.9616109,
       },
     },
     {
-      name: "Location 4",
+      name: "Uncommon Grounds",
       location: {
-        lat: 41.3797,
-        lng: 2.1682,
+        lat: 40.616876,
+        lng: -80.246794,
       },
     },
     {
-      name: "Location 5",
+      name: "Thursday's Bar & Grill",
       location: {
-        lat: 41.4055,
-        lng: 2.1915,
+        lat: 40.697888,
+        lng: -80.294871,
       },
     },
   ];
