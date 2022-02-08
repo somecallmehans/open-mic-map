@@ -5,6 +5,11 @@ const Links = require("./models/Links");
 const Locations = require("./models/Locations");
 
 //Add model
+Events.hasOne(Locations);
+Locations.belongsTo(Events);
+
+Events.hasOne(EventType);
+Events.hasMany(Links);
 
 module.exports = {
   db,
