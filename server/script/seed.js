@@ -6,7 +6,17 @@ const {
 async function seed() {
   await db.sync({ force: true });
   console.log("db synced!");
-  //Add seed functions etc
+  //Add seed events functions etc
+
+  await EventType.create({
+    name: "comedy",
+  });
+  await EventType.create({
+    name: "music",
+  });
+  await EventType.create({
+    name: "all performances",
+  });
 }
 
 async function runSeed() {
