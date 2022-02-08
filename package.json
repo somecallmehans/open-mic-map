@@ -11,6 +11,7 @@
     "dotenv": "^15.0.0",
     "express": "^4.17.2",
     "morgan": "^1.10.0",
+    "pg": "^8.7.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
@@ -19,6 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "nodemon server",
+    "start:server": "react-scripts start nodemon server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
