@@ -1,6 +1,6 @@
 const {
   db,
-  models: { Events, EventType, Links, Locations },
+  models: { Events, EventType, Locations },
 } = require("../db");
 
 async function seed() {
@@ -17,6 +17,33 @@ async function seed() {
   await EventType.create({
     name: "all performances",
   });
+
+  /* User.create({
+   name: "name",
+   Login: {...}
+},{
+   include: Login
+}) */
+
+  //console.log(Object.keys(Events.__proto__));
+  await Events.create(
+    {
+      title: "Open mic 1",
+      over21: true,
+      recurring: false,
+      rateOfRecurrence: "Weekly",
+      dayOfTheWeek: "Thursday",
+      location: {
+        address: "343 Stratford Ave",
+        city: "Pittsburgh",
+        state: "Pennsylvania",
+      },
+      eventtypeId: 2,
+    },
+    {
+      include: Locations,
+    }
+  );
 }
 
 async function runSeed() {

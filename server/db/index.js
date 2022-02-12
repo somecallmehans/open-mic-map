@@ -1,22 +1,19 @@
 const db = require("./db");
 const Events = require("./models/Events");
 const EventType = require("./models/EventType");
-const Links = require("./models/Links");
 const Locations = require("./models/Locations");
 
 //Add model
-Events.hasOne(Locations);
-Locations.belongsTo(Events);
+Events.belongsTo(Locations);
+Locations.hasMany(Events, { as: "location" });
 
-Events.hasOne(EventType);
-Events.hasMany(Links);
+EventType.hasMany(Events, { as: "eventtype" });
 
 module.exports = {
   db,
   models: {
     Events,
     EventType,
-    Links,
     Locations,
   },
 };
