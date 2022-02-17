@@ -18,13 +18,6 @@ async function seed() {
     name: "all performances",
   });
 
-  /* User.create({
-   name: "name",
-   Login: {...}
-},{
-   include: Login
-}) */
-
   //console.log(Object.keys(Events.__proto__));
   await Events.create(
     {
@@ -34,11 +27,47 @@ async function seed() {
       rateOfRecurrence: "Weekly",
       dayOfTheWeek: "Thursday",
       location: {
-        address: "343 Stratford Ave",
+        address: "343 Stratford Avenue",
         city: "Pittsburgh",
         state: "Pennsylvania",
       },
       eventtypeId: 2,
+    },
+    {
+      include: Locations,
+    }
+  );
+  await Events.create(
+    {
+      title: "Open mic 2",
+      over21: true,
+      recurring: true,
+      rateOfRecurrence: "Monthly",
+      dayOfTheWeek: "Friday",
+      location: {
+        address: "254 37th Street",
+        city: "Pittsburgh",
+        state: "Pennsylvania",
+      },
+      eventtypeId: 1,
+    },
+    {
+      include: Locations,
+    }
+  );
+  await Events.create(
+    {
+      title: "Open mic 3",
+      over21: false,
+      recurring: true,
+      rateOfRecurrence: "Weekly",
+      dayOfTheWeek: "Wednesday",
+      location: {
+        address: "2821 Penn Avenue",
+        city: "Pittsburgh",
+        state: "Pennsylvania",
+      },
+      eventtypeId: 3,
     },
     {
       include: Locations,

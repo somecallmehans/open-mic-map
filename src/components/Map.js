@@ -1,13 +1,18 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   GoogleMap,
   InfoWindow,
   LoadScript,
   Marker,
 } from "@react-google-maps/api";
+import { getEvents } from "../api";
 
 export default function Map() {
   const [selected, setSelected] = useState({});
+
+  useEffect(() => {
+    getEvents();
+  }, []);
 
   const onSelect = (item) => {
     setSelected(item);
@@ -18,7 +23,7 @@ export default function Map() {
     width: "100%",
   };
 
-  //Sotuh/West are denoted with negative numbers
+  //South/West are denoted with negative numbers
   //This is Pittsburgh
   const defaultCenter = {
     lat: 40.3851,

@@ -1,5 +1,5 @@
 const { db } = require("./db");
-const PORT = 3000;
+const PORT = 8080;
 const app = require("./app");
 const seed = require("./script/seed");
 

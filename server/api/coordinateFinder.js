@@ -2,8 +2,7 @@ const NodeGeocoder = require("node-geocoder");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 
-console.log("//////////////////", process.env.REACT_APP_API_KEY);
-const newFunc = async () => {
+const coordinateFinder = async (locationData) => {
   try {
     const options = {
       provider: "google",
@@ -13,12 +12,12 @@ const newFunc = async () => {
     };
     const geocoder = NodeGeocoder(options);
 
-    const res = await geocoder.geocode("343 Stratford Avenue Pittsburgh");
-
-    console.log(res);
+    const res = await geocoder.geocode(locationData);
+    console.log("INSIDE FINDER");
+    return { lat: res[0].latitude, long: res[0].longitude };
   } catch (error) {
     console.log(error);
   }
 };
 
-newFunc();
+module.exports = coordinateFinder;
